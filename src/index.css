@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.signin-wrapper {
+    width: 40%;
+    margin: auto;
+    padding: 20px;
+}
+
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    /* Adjust as needed */
+}
+
+h4 {
+    text-align: center;
+}
+
+.gold-rate-converter {
+    padding: 30px;
+    height: 100vh;
+}
+
+h3 {
+    font-weight: 600;
+    border-top: 2px dashed black;
+    border-bottom: 2px dashed black;
+    text-align: center;
+    margin: 30px;
+    padding: 20px;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-1 {
+    flex: 1 1 50%;
+    padding: 20px;
+}
+
+.box-2 {
+    flex: 1 1 50%;
+    padding: 20px;
+    text-align: center
+}
+
+label {
+    color: rgb(14, 142, 240);
+    font-weight: 500;
+}
+
+.result-container {
+    margin: 20px;
+    border: 2px solid rgb(14, 142, 240);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.box-2>img {
+    border: 1px solid rgb(115, 188, 245);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.chart {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.buttons>.button {
+    margin-right: 10px;
+}
