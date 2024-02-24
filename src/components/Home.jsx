@@ -1,14 +1,19 @@
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { Triangle } from 'react-loader-spinner'
-/* import image1 from '../../public/assets/welcome.avif' */
+import backgroundImage from '../../public/assets/welcome.jpg'
 
 function Home() {
     let navigate = useNavigate()
-
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundImage})`, // Set background image
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    };
 
     return (
-        <div className="home-container">
+        <div className="home-container" style={backgroundStyle}>
             <div className='home-page'>
                 <h4 style={{ fontWeight: "bold", fontSize: "18px" }}>Welcome</h4>
                 <p>to</p>

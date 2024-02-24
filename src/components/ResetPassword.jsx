@@ -6,8 +6,15 @@ import AxiosService from '../utlis/AxiosService';
 import ApiRoutes from '../utlis/ApiRoutes';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import backgroundImage from '../../public/assets/1.avif'
 
 function ResetPassword() {
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundImage})`, // Set background image
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    };
     let { token } = useParams();
     const [password, setPassword] = useState();
     const navigate = useNavigate()
@@ -29,7 +36,7 @@ function ResetPassword() {
         }
     }
     return (
-        <div className='forgot-container'>
+        <div className='forgot-container' style={backgroundStyle}>
             <div className="forgot-page">
                 <h4>Reset Your Password</h4>
                 <Form onSubmit={handleChnage}>

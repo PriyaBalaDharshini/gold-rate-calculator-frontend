@@ -5,8 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import AxiosService from '../utlis/AxiosService';
 import ApiRoutes from '../utlis/ApiRoutes';
 import { toast } from 'react-toastify';
+import backgroundImage from '../../public/assets/signin.avif'
 
 function Signin() {
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundImage})`, // Set background image
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    };
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
 
@@ -32,7 +39,7 @@ function Signin() {
     }
 
     return (
-        <div className='signin-container'>
+        <div className='signin-container' style={backgroundStyle}>
             <div className="singin-page">
                 <h4 style={{ color: "darkblue", marginBottom: "20px" }}>Signin to Continue</h4>
                 <Form onSubmit={handleSubmit}>

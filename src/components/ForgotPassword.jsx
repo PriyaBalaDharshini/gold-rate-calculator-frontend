@@ -4,9 +4,16 @@ import Form from 'react-bootstrap/Form';
 import AxiosService from '../utlis/AxiosService';
 import ApiRoutes from '../utlis/ApiRoutes';
 import { toast } from 'react-toastify';
+import backgroundImage from '../../public/assets/1.avif'
 
 
 function ForgotPassword() {
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundImage})`, // Set background image
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    };
     const [email, setEmail] = useState()
     console.log(email);
     const handleChange = async (e) => {
@@ -26,7 +33,7 @@ function ForgotPassword() {
     }
 
     return (
-        <div className='forgot-container'>
+        <div className='forgot-container' style={backgroundStyle}>
             <div className="forgot-page">
                 <h4>Enter Email to Reset Your Password</h4>
                 <Form onSubmit={handleChange}>

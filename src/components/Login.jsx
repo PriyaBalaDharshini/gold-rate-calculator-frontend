@@ -5,8 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import AxiosService from '../utlis/AxiosService';
 import ApiRoutes from '../utlis/ApiRoutes';
 import { toast } from 'react-toastify';
+import backgroundImage from '../../public/assets/signin.avif'
 
 function Login() {
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundImage})`, // Set background image
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    };
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,7 +34,7 @@ function Login() {
 
     }
     return (
-        <div className='login-container'>
+        <div className='login-container' style={backgroundStyle}>
             <div className="login-page">
                 <h4 style={{ color: "darkblue", marginBottom: "20px" }}>Login to Continue</h4>
                 <Form>

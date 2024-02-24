@@ -6,23 +6,17 @@
     padding: 0;
 }
 
-.home-container,
-.signin-container,
-.login-container {
+.login-container,
+.signin-container {
     display: flex;
     height: 100vh;
-    background-color: rgba(211, 245, 247, 0.8);
-    background-image: url("assets/signin.avif");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .home-container {
     display: flex;
+    height: 100vh;
     align-items: center;
     justify-content: center;
-    background-image: url("assets/welcome.jpg");
 }
 
 .home-page {
@@ -64,11 +58,6 @@
 .forgot-container {
     display: flex;
     height: 100vh;
-    background-color: rgba(211, 245, 247, 0.8);
-    background-image: url("assets/1.avif");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .forgot-page {
@@ -86,7 +75,6 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
-    /* Adjust as needed */
 }
 
 h4 {
