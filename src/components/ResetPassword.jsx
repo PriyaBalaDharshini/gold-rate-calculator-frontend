@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 function ResetPassword() {
     let { token } = useParams();
     const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState()
     const navigate = useNavigate()
 
     console.log(token);
@@ -30,33 +29,25 @@ function ResetPassword() {
         }
     }
     return (
-        <div className='signin-wrapper mt-5 pt-5'>
-            <h4>Reset Your Password</h4>
-            <Form onSubmit={handleChnage}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Enter Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Enter Password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </Form.Group>
+        <div className='forgot-container'>
+            <div className="forgot-page">
+                <h4>Reset Your Password</h4>
+                <Form onSubmit={handleChnage}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Enter Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <Button variant="success" type="submit" className='mt-4'>
-                    Sumbit
-                </Button>
-            </Form>
-
+                    <Button variant="success" type="submit" className='mt-4'>
+                        Sumbit
+                    </Button>
+                </Form>
+            </div>
         </div>
     )
 }

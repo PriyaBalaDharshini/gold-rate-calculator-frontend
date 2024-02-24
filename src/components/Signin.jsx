@@ -32,34 +32,36 @@ function Signin() {
     }
 
     return (
-        <div className='signin-wrapper'>
-            <h4>Signin to Continue</h4>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name" name='name' />
-                </Form.Group>
+        <div className='signin-container'>
+            <div className="singin-page">
+                <h4 style={{ color: "darkblue", marginBottom: "20px" }}>Signin to Continue</h4>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter name" name='name' />
+                    </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control type="phone" placeholder="Enter phone number" name='phone' />
-                </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control type="phone" placeholder="Enter phone number" name='phone' />
+                    </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" name='email' />
-                </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" name='email' />
+                    </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name='password' />
-                </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" name='password' />
+                    </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-            <p className='form-para py-4'>Already Have Accout? <a href="/login">Login</a> to continue</p>
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+                <p className='form-para py-4 '>Already Have Accout? <a href="/login">Login</a> to continue</p>
+            </div>
         </div>
     )
 

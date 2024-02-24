@@ -2,12 +2,70 @@
 
 * {
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(211, 245, 247, 0.8);
+    background-image: url("../../public/assets/welcome.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.signin-container,
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-color: rgba(211, 245, 247, 0.8);
+    background-image: url("../../public/assets/signin.avif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.forgot-container {
+    display: flex;
+    height: 100vh;
+    background-color: rgba(211, 245, 247, 0.8);
+    background-image: url("../../public/assets/1.avif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.forgot-page {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    height: 30%;
+    text-align: center;
+}
+
+.singin-page,
+.login-page {
+    margin-top: 50px;
+    margin-left: 100px;
+    border: 3px solid white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px white;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
 
 .signin-wrapper {
     width: 40%;
-    margin: auto;
+    border: 3px solid white;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px white;
 }
 
 .spinner {
@@ -22,9 +80,28 @@ h4 {
     text-align: center;
 }
 
+.signin,
+.login {
+    width: 150px;
+}
+
+
 .gold-rate-converter {
     padding: 30px;
-    height: 100vh;
+    min-height: 100vh;
+    /* Ensure the container covers the full viewport height */
+    background-color: antiquewhite;
+    /* Set the background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grd-page {
+    width: 100%;
+    /* Ensure the content fills the container */
+    max-width: 1200px;
+    /* Limit the content width if necessary */
 }
 
 h3 {
@@ -53,7 +130,7 @@ h3 {
 }
 
 label {
-    color: rgb(14, 142, 240);
+    color: rgb(28, 92, 141);
     font-weight: 500;
 }
 

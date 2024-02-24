@@ -26,22 +26,24 @@ function ForgotPassword() {
     }
 
     return (
-        <div className='signin-wrapper mt-5 pt-5'>
-            <h4>Enter Email to Reset Your Password</h4>
-            <Form onSubmit={handleChange}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        placeholder="Enter Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Button variant="success" type="submit" className='mt-4'>
-                        Sumbit
-                    </Button>
-                </Form.Group>
-            </Form>
+        <div className='forgot-container'>
+            <div className="forgot-page">
+                <h4>Enter Email to Reset Your Password</h4>
+                <Form onSubmit={handleChange}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Button variant="success" type="submit" className='mt-4'>
+                            Sumbit
+                        </Button>
+                    </Form.Group>
+                </Form>
+            </div>
 
         </div>
     )

@@ -27,33 +27,35 @@ function Login() {
 
     }
     return (
-        <div className='signin-wrapper mt-5 pt-5'>
-            <h4>Login</h4>
-            <Form>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                        type="email"
-                        placeholder="Enter email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} />
-                </Form.Group>
+        <div className='login-container'>
+            <div className="login-page">
+                <h4 style={{ color: "darkblue", marginBottom: "20px" }}>Login to Continue</h4>
+                <Form>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} />
+                    </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)} />
+                    </Form.Group>
 
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Login
-                </Button>
-                <p className='py-4'>Don't have accout? <a href="/add-user">Signin</a> to continue</p>
-                <p>Forgot Password? <a href="/forgot-password">Click her</a> to reset the password</p>
-            </Form>
+                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+                        Login
+                    </Button>
+                    <p className='mt-4'>Don't have accout? <a href="/add-user">Signin</a> to continue</p>
+                    <p>Forgot Password? <a href="/forgot-password">Click her</a> to reset the password</p>
+                </Form>
+            </div>
         </div>
     )
 }
