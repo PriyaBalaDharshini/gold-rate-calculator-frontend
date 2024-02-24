@@ -46,7 +46,7 @@ function ForgotPassword() {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <Button variant="success" type="submit" className='mt-4'>
-                            Sumbit
+                            Submit
                         </Button>
                     </Form.Group>
                 </Form>
