@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import gif from '../../public/assets/gold-stone.gif'
-import image1 from '../../public/assets/1.png'
 import image2 from '../../public/assets/2.png'
 import 'react-datepicker/dist/react-datepicker.css';
 import Button from 'react-bootstrap/Button';
@@ -8,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { useLogout } from '../hooks/useLogout';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
+
 
 
 function Dashboard() {

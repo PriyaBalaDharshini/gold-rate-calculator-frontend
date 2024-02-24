@@ -9,8 +9,7 @@ function Home() {
 
     return (
         <div className="home-container">
-
-            <div className='signin-wrapper text-center mt-3 py-3'>
+            <div className='home-page'>
                 <h4 style={{ fontWeight: "bold", fontSize: "18px" }}>Welcome</h4>
                 <p>to</p>
                 <h3>Online Gold Rate Calculator</h3>

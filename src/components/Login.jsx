@@ -53,7 +53,7 @@ function Login() {
                         Login
                     </Button>
                     <p className='mt-4'>Don't have accout? <a href="/add-user">Signin</a> to continue</p>
-                    <p>Forgot Password? <a href="/forgot-password">Click her</a> to reset the password</p>
+                    <p>Forgot Password? <a href="/forgot-password">Click here</a> to reset the password</p>
                 </Form>
             </div>
         </div>

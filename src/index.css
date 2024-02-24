@@ -6,38 +6,69 @@
     padding: 0;
 }
 
-.home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: rgba(211, 245, 247, 0.8);
-    background-image: url("../../public/assets/welcome.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
+.home-container,
 .signin-container,
 .login-container {
     display: flex;
     height: 100vh;
     background-color: rgba(211, 245, 247, 0.8);
-    background-image: url("../../public/assets/signin.avif");
+    background-image: url("assets/signin.avif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("assets/welcome.jpg");
+}
+
+.home-page {
+    height: 550px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    color: white;
+    animation: fadeIn 3s ease
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.singin-page,
+.login-page {
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.singin-page {
+    height: 550px;
+}
+
+.login-page {
+    height: 400px;
 }
 
 .forgot-container {
     display: flex;
     height: 100vh;
     background-color: rgba(211, 245, 247, 0.8);
-    background-image: url("../../public/assets/1.avif");
+    background-image: url("assets/1.avif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 .forgot-page {
@@ -49,30 +80,12 @@
     text-align: center;
 }
 
-.singin-page,
-.login-page {
-    margin-top: 50px;
-    margin-left: 100px;
-    border: 3px solid white;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px white;
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-
-.signin-wrapper {
-    width: 40%;
-    border: 3px solid white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px white;
-}
 
 .spinner {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 50px;
     /* Adjust as needed */
 }
 
@@ -89,9 +102,7 @@ h4 {
 .gold-rate-converter {
     padding: 30px;
     min-height: 100vh;
-    /* Ensure the container covers the full viewport height */
     background-color: antiquewhite;
-    /* Set the background color */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,15 +110,13 @@ h4 {
 
 .grd-page {
     width: 100%;
-    /* Ensure the content fills the container */
     max-width: 1200px;
-    /* Limit the content width if necessary */
 }
 
 h3 {
     font-weight: 600;
-    border-top: 2px dashed black;
-    border-bottom: 2px dashed black;
+    border-top: 2px dashed grey;
+    border-bottom: 2px dashed grey;
     text-align: center;
     margin: 30px;
     padding: 20px;
