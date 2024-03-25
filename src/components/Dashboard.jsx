@@ -8,8 +8,6 @@ import { useLogout } from '../hooks/useLogout';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
 
-
-
 function Dashboard() {
     const [karat, setKarat] = useState("price_gram_24k");
     const [currency, setCurrency] = useState(null)
@@ -17,6 +15,7 @@ function Dashboard() {
     const [additionalCharges, setadditionalCharges] = useState(0)
     const [date, setDate] = useState("")
     const [totalValue, setTotalValue] = useState(null)
+    const [rate, setRate] = useState(0)
 
     let logout = useLogout()
     let navigate = useNavigate();
@@ -26,14 +25,17 @@ function Dashboard() {
         if (!token) {
             navigate("/")
         }
-    }, [])
+    }, [token, navigate])
+    useEffect(() => {
+        if (date !== "") {
+            calculateGoldRate();
+        }
+    }, [date]);
 
     const calculateGoldRate = () => {
-
-        console.log(date);
+        //console.log(date);
         let formatedDate = date.split("-").join("");
         console.log(formatedDate);
-
 
         var myHeaders = new Headers();
         myHeaders.append("x-access-token", "goldapi-6kzrlswysdkt-io");
@@ -64,12 +66,15 @@ function Dashboard() {
             .then(response => response.json())
             .then(response => {
                 const result = response;
-                console.log(result);
+                //console.log(result);
+                const todayRate = result[open_price];
+                //console.log(todayRate);
                 const pricePerGram = result[karat];
-                console.log(pricePerGram);
+                //console.log(pricePerGram);
                 const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100);
 
                 setTotalValue(totalValue.toFixed(2));
+                setRate(todayRate);
             })
             .catch(error => console.log('error', error));
 
@@ -86,6 +91,10 @@ function Dashboard() {
                 <div className="box">
                     <div className="box-1">
                         <Form>
+                            <Form.Group className="mb-3" controlId="date">
+                                <Form.Label>Todays's Gold Rate: {rate} </Form.Label>
+                            </Form.Group>
+
                             <Form.Group className="mb-3">
                                 <Form.Label>Select Karat :</Form.Label>
                                 <Form.Select
