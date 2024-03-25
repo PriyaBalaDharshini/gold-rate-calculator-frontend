@@ -15,7 +15,7 @@ function Dashboard() {
     const [additionalCharges, setadditionalCharges] = useState(0);
     const [date, setDate] = useState("");
     const [totalValue, setTotalValue] = useState(null);
-    const [rate, setRate] = useState(0);
+    const [rate, setRate] = useState(10000);
 
     const logout = useLogout();
     const navigate = useNavigate();
@@ -71,10 +71,6 @@ function Dashboard() {
                 <div className="box">
                     <div className="box-1">
                         <Form>
-                            <Form.Group className="mb-3" controlId="date">
-                                <Form.Label>Todays's Gold Rate: {rate} </Form.Label>
-                            </Form.Group>
-
                             <Form.Group className="mb-3">
                                 <Form.Label>Select Karat :</Form.Label>
                                 <Form.Select
@@ -160,6 +156,9 @@ function Dashboard() {
                                     onChange={(e) => setDate(e.target.value)
                                     }
                                 />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="date">
+                                <Form.Label>Todays's Gold Rate: {rate} </Form.Label>
                             </Form.Group>
                         </Form>
 
