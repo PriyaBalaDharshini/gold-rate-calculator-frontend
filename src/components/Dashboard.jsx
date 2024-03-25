@@ -10,32 +10,28 @@ import Chart from './Chart';
 
 function Dashboard() {
     const [karat, setKarat] = useState("price_gram_24k");
-    const [currency, setCurrency] = useState(null)
-    const [goldweight, setGoldweight] = useState(0)
-    const [additionalCharges, setadditionalCharges] = useState(0)
-    const [date, setDate] = useState("")
-    const [totalValue, setTotalValue] = useState(null)
-    const [rate, setRate] = useState(0)
+    const [currency, setCurrency] = useState(null);
+    const [goldweight, setGoldweight] = useState(0);
+    const [additionalCharges, setadditionalCharges] = useState(0);
+    const [date, setDate] = useState("");
+    const [totalValue, setTotalValue] = useState(null);
+    const [rate, setRate] = useState(0);
 
-    let logout = useLogout()
-    let navigate = useNavigate();
+    const logout = useLogout();
+    const navigate = useNavigate();
 
-    let token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
+
     useEffect(() => {
         if (!token) {
-            navigate("/")
+            navigate("/");
         }
-    }, [token, navigate])
-    useEffect(() => {
-        if (date !== "") {
-            calculateGoldRate();
-        }
-    }, [date]);
+    }, []);
 
     const calculateGoldRate = () => {
-        //console.log(date);
-        let formatedDate = date.split("-").join("");
-        console.log(formatedDate);
+        console.log(date);
+        let formattedDate = date.split("-").join("");
+        console.log(formattedDate);
 
         var myHeaders = new Headers();
         myHeaders.append("x-access-token", "goldapi-6kzrlswysdkt-io");
@@ -46,40 +42,24 @@ function Dashboard() {
             headers: myHeaders,
             redirect: 'follow'
         };
-        /* let obj = {
-            price_gram_24k: 64.9739,
-            price_gram_22k: 59.5594,
-            price_gram_21k: 56.8522,
-            price_gram_20k: 54.1449,
-            price_gram_18k: 48.7304,
-            price_gram_16k: 43.316,
-            price_gram_14k: 37.9015,
-            price_gram_10k: 27.0725
-        }
-        const pricePerGram = obj[karat];
 
-        const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100);
-        setTotalValue(totalValue);
-        console.log(totalValue); */
-
-        fetch(`https://www.goldapi.io/api/XAU/${currency}/${formatedDate}`, requestOptions)
+        fetch(`https://www.goldapi.io/api/XAU/${currency}/${formattedDate}`, requestOptions)
             .then(response => response.json())
             .then(response => {
                 const result = response;
-                //console.log(result);
-                const todayRate = result[open_price];
-                //console.log(todayRate);
+                console.log(result);
+
+                const todayRate = result["open_price"];
+                console.log(todayRate);
                 const pricePerGram = result[karat];
-                //console.log(pricePerGram);
+                console.log(pricePerGram);
                 const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100);
 
                 setTotalValue(totalValue.toFixed(2));
                 setRate(todayRate);
             })
             .catch(error => console.log('error', error));
-
     }
-
     return (
 
         <div className='gold-rate-converter grd-container'>
