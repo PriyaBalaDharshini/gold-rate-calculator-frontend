@@ -7,15 +7,16 @@ import Form from 'react-bootstrap/Form';
 import { useLogout } from '../hooks/useLogout';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
+import info from '../data.json';
 
 function Dashboard() {
     const [karat, setKarat] = useState("price_gram_24k");
-    const [currency, setCurrency] = useState(null);
+    const [currency, setCurrency] = useState("");
     const [goldweight, setGoldweight] = useState(0);
     const [additionalCharges, setadditionalCharges] = useState(0);
     const [date, setDate] = useState("");
-    const [totalValue, setTotalValue] = useState(null);
-    const [rate, setRate] = useState(10000);
+    const [totalValue, setTotalValue] = useState("");
+    const [todayGoldRate, setTodayGoldRate] = useState(0);
 
     const logout = useLogout();
     const navigate = useNavigate();
@@ -26,7 +27,23 @@ function Dashboard() {
         if (!token) {
             navigate("/");
         }
+        let currentDate = new Date().getDate();
+        let currentMonth = new Date().getMonth() + 1;
+        let currentYear = new Date().getFullYear()
+        if (currentMonth / 10 < 1) {
+            var month = `0${currentMonth}`
+        }
+        let today = `${currentYear}-${month}-${currentDate}`
+
+        info.forEach(ele => {
+            if (ele.date === today) {
+                setTodayGoldRate(ele.rate);
+            }
+        })
     }, []);
+    console.log(info);
+
+
 
     const calculateGoldRate = () => {
         console.log(date);
@@ -49,14 +66,12 @@ function Dashboard() {
                 const result = response;
                 console.log(result);
 
-                const todayRate = result["open_price"];
-                console.log(todayRate);
                 const pricePerGram = result[karat];
                 console.log(pricePerGram);
                 const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100);
 
                 setTotalValue(totalValue.toFixed(2));
-                setRate(todayRate);
+                setRate(todayGoldRate);
             })
             .catch(error => console.log('error', error));
     }
@@ -71,6 +86,7 @@ function Dashboard() {
                 <div className="box">
                     <div className="box-1">
                         <Form>
+                            <p>Todays's Gold Rate per gram: {todayGoldRate} </p>
                             <Form.Group className="mb-3">
                                 <Form.Label>Select Karat :</Form.Label>
                                 <Form.Select
@@ -157,11 +173,8 @@ function Dashboard() {
                                     }
                                 />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="date">
-                                <Form.Label>Todays's Gold Rate: {rate} </Form.Label>
-                            </Form.Group>
-                        </Form>
 
+                        </Form>
 
                         <Button onClick={() => calculateGoldRate()} variant="info">Calculate</Button>
 
