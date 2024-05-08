@@ -10,11 +10,10 @@ import Chart from './Chart';
 import info from '../data.json';
 
 function Dashboard() {
-    const [karat, setKarat] = useState("price_gram_24k");
-    const [currency, setCurrency] = useState("");
+    const [karat, setKarat] = useState("");
     const [goldweight, setGoldweight] = useState(0);
     const [additionalCharges, setadditionalCharges] = useState(0);
-    const [date, setDate] = useState("");
+    const [selectDate, setSelectDate] = useState("");
     const [totalValue, setTotalValue] = useState("");
     const [todayGoldRate, setTodayGoldRate] = useState(0);
 
@@ -33,45 +32,32 @@ function Dashboard() {
         if (currentMonth / 10 < 1) {
             var month = `0${currentMonth}`
         }
-        let today = `${currentYear}-${month}-${currentDate}`
+        if (currentDate / 10 < 1) {
+            var date = `0${currentDate}`
+        }
+        let today = `${currentYear}-${month}-${date}`
+
 
         info.forEach(ele => {
+
             if (ele.date === today) {
                 setTodayGoldRate(ele.rate);
+
             }
         })
     }, []);
-    console.log(info);
 
     const calculateGoldRate = () => {
-        console.log(date);
-        let formattedDate = date.split("-").join("");
-        console.log(formattedDate);
-
-        var myHeaders = new Headers();
-        myHeaders.append("x-access-token", "goldapi-6kzrlswysdkt-io");
-        myHeaders.append("Content-Type", "application/json");
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`https://www.goldapi.io/api/XAU/${currency}/${formattedDate}`, requestOptions)
-            .then(response => response.json())
-            .then(response => {
-                const result = response;
-                console.log(result);
-
-                const pricePerGram = result[karat];
+        info.forEach(ele => {
+            if (ele.date === selectDate) {
+                setTodayGoldRate(ele.rate);
+                let pricePerGram = ele[karat]
                 console.log(pricePerGram);
-                const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100);
+                const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100)
+                setTotalValue(totalValue);
+            }
+        })
 
-                setTotalValue(totalValue.toFixed(2));
-                setRate(todayGoldRate);
-            })
-            .catch(error => console.log('error', error));
     }
     return (
 
@@ -84,7 +70,7 @@ function Dashboard() {
                 <div className="box">
                     <div className="box-1">
                         <Form>
-                            <h5> <b>Todays's Gold Rate per gram: {todayGoldRate}</b> </h5>
+                            <h3 style={{ fontSize: " 20px " }}>Todays's Gold Rate per gram: {todayGoldRate} </h3>
                             <Form.Group className="mb-3">
                                 <Form.Label>Select Karat :</Form.Label>
                                 <Form.Select
@@ -92,49 +78,10 @@ function Dashboard() {
                                     value={karat}
                                     onChange={(e) => setKarat(e.target.value)}
                                 >
-                                    <option value="price_gram_24k">24k</option>
-                                    <option value="price_gram_22k">22k</option>
-                                    <option value="price_gram_21k">21k</option>
-                                    <option value="price_gram_20k">20k</option>
-                                    <option value="price_gram_18k">18k</option>
-                                    <option value="price_gram_16k">16k</option>
-                                    <option value="price_gram_14k">14k</option>
-                                    <option value="price_gram_10k">10k</option>
-                                </Form.Select>
-                            </Form.Group>
+                                    <option>Select Option</option>
+                                    <option value="rate_24k">24k</option>
+                                    <option value="rate_22k">22k</option>
 
-                            <Form.Group className="mb-3">
-                                <Form.Label>Select Currency :</Form.Label>
-                                <Form.Select
-                                    id="currency"
-                                    value={currency}
-                                    onChange={(e) => setCurrency(e.target.value)}
-                                >
-                                    <option value="USD">USD - United States Dollar</option>
-                                    <option value="AUD">AUD - Australian Dollar</option>
-                                    <option value="GBP">GBP - British Pound Sterling</option>
-                                    <option value="EUR">EUR - Euro</option>
-                                    <option value="CHF">CHF - Swiss Franc</option>
-                                    <option value="CAD">CAD - Canadian Dollar</option>
-                                    <option value="JPY">JPY - Japanese Yen</option>
-                                    <option value="KRW">KRW - South Korean Won</option>
-                                    <option value="INR">INR - Indian Rupee</option>
-                                    <option value="CNY">CNY - Chinese Yuan</option>
-                                    <option value="ZAR">ZAR - South African Rand</option>
-                                    <option value="THB">THB - Thai Baht</option>
-                                    <option value="SGD">SGD - Singapore Dollar</option>
-                                    <option value="HKD">HKD - Hong Kong Dollar</option>
-                                    <option value="CZK">CZK - Czech Koruna</option>
-                                    <option value="RUB">RUB - Russian Ruble</option>
-                                    <option value="PLN">PLN - Polish Zloty</option>
-                                    <option value="MYR">MYR - Malaysian Ringgit</option>
-                                    <option value="AED">AED - Emirati Dirham</option>
-                                    <option value="KWD">KWD - Kuwaiti Dinar</option>
-                                    <option value="EGP">EGP - Egyptian Pound</option>
-                                    <option value="OMR">OMR - Omani Rial</option>
-                                    <option value="SAR">SAR - Saudi Riyal</option>
-                                    <option value="MXN">MXN - Mexican Peso</option>
-                                    <option value="JOD">JOD - Jordanian Dinar</option>
                                 </Form.Select>
                             </Form.Group>
 
@@ -166,9 +113,11 @@ function Dashboard() {
                                 <Form.Label>Date: </Form.Label>
                                 <Form.Control
                                     type="date"
-                                    selected={date}
-                                    onChange={(e) => setDate(e.target.value)
+                                    selected={selectDate}
+                                    onChange={(e) => setSelectDate(e.target.value)
                                     }
+                                    max={new Date().toISOString().split("T")[0]}
+                                    min={"2024-01-01"}
                                 />
                             </Form.Group>
 
