@@ -43,8 +43,6 @@ function Dashboard() {
     }, []);
     console.log(info);
 
-
-
     const calculateGoldRate = () => {
         console.log(date);
         let formattedDate = date.split("-").join("");
@@ -86,7 +84,7 @@ function Dashboard() {
                 <div className="box">
                     <div className="box-1">
                         <Form>
-                            <p>Todays's Gold Rate per gram: {todayGoldRate} </p>
+                            <h5> <b>Todays's Gold Rate per gram: {todayGoldRate}</b> </h5>
                             <Form.Group className="mb-3">
                                 <Form.Label>Select Karat :</Form.Label>
                                 <Form.Select
