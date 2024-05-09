@@ -7,7 +7,8 @@ import Form from 'react-bootstrap/Form';
 import { useLogout } from '../hooks/useLogout';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
-import info from '../data.json';
+import axios from 'axios';
+
 
 function Dashboard() {
     const [karat, setKarat] = useState("");
@@ -16,6 +17,7 @@ function Dashboard() {
     const [selectDate, setSelectDate] = useState("");
     const [totalValue, setTotalValue] = useState("");
     const [todayGoldRate, setTodayGoldRate] = useState(0);
+    const [goldRate, setGoldRate] = useState(0);
 
     const logout = useLogout();
     const navigate = useNavigate();
@@ -26,6 +28,12 @@ function Dashboard() {
         if (!token) {
             navigate("/");
         }
+
+        displayTodayRate()
+
+    }, []);
+
+    const displayTodayRate = async () => {
         let currentDate = new Date().getDate();
         let currentMonth = new Date().getMonth() + 1;
         let currentYear = new Date().getFullYear()
@@ -36,19 +44,20 @@ function Dashboard() {
             var date = `0${currentDate}`
         }
         let today = `${currentYear}-${month}-${date}`
+        const { data } = await axios.post("http://localhost:8000/get-rate", { selectDate: today })
+        setTodayGoldRate(data.rate)
+    }
 
+    const calculateGoldRate = async () => {
+        const { data } = await axios.post("http://localhost:8000/get-rate", { selectDate })
+        //console.log(data);
+        setGoldRate(data.rate)
+        let pricePerGram = data[karat];
+        //console.log(pricePerGram);
+        const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100)
+        setTotalValue(totalValue);
 
-        info.forEach(ele => {
-
-            if (ele.date === today) {
-                setTodayGoldRate(ele.rate);
-
-            }
-        })
-    }, []);
-
-    const calculateGoldRate = () => {
-        info.forEach(ele => {
+        /* info.forEach(ele => {
             if (ele.date === selectDate) {
                 setTodayGoldRate(ele.rate);
                 let pricePerGram = ele[karat]
@@ -56,7 +65,7 @@ function Dashboard() {
                 const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100)
                 setTotalValue(totalValue);
             }
-        })
+        }) */
 
     }
     return (

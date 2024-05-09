@@ -3688,3 +3688,19 @@ const calculateGoldRate = () => {
     })
     .catch(error => console.log('error', error));
 }
+
+
+
+
+const calculateGoldRate1 = () => {
+  info.forEach(ele => {
+      if (ele.date === selectDate) {
+          setTodayGoldRate(ele.rate);
+          let pricePerGram = ele[karat]
+          console.log(pricePerGram);
+          const totalValue = (pricePerGram * goldweight) + ((pricePerGram * goldweight * additionalCharges) / 100)
+          setTotalValue(totalValue);
+      }
+  })
+
+}
